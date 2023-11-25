@@ -1,0 +1,42 @@
+.home-container {
+  margin-top: 10%;
+  text-align: center;
+}
+
+.navbar-container {
+  height: 70px !important;
+  padding: 10px 20px !important;
+}
+
+.logo-name {
+  font-size: 25px !important;
+}
+
+.loginBtn,
+.signupBtn {
+  margin-right: 10px;
+  font-size: 15px !important;
+}
+
+.account {
+  text-decoration: none;
+}
+
+.container {
+  width: 40% !important;
+  margin: 40px auto !important;
+  text-align: center !important;
+}
+
+.container form div {
+  margin-bottom: 20px !important;
+}
+
+.account-div {
+  text-align: center;
+}
+
+.submit-btn {
+  width: 100%;
+  margin-bottom: 30px;
+}

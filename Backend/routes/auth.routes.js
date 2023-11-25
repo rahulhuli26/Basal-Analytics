@@ -5,10 +5,9 @@ const jwt = require("jsonwebtoken");
 const authRouter = Router();
 
 authRouter.post("/signup", async (req, res) => {
-  console.log(req.body);
   const checkUser = await UserModel.find({ email: req.body.email });
   if (checkUser.length >= 1) {
-    res.status(409).send({ message: "User already exists" });
+    res.send({ user: "", message: "User already exists" });
   } else {
     const user = await UserModel.create(req.body);
     res.status(200).send({ user });
@@ -34,7 +33,7 @@ authRouter.post("/login", async (req, res) => {
     };
     res.status(200).send(payload);
   } else {
-    res.status(409).send({ message: "Invalid usarname or password" });
+    res.send({ user: "", message: "Invalid usarname or password" });
   }
 });
 
