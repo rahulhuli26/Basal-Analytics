@@ -2,7 +2,7 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { loginUser } from "../store/users/users.actions";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,6 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { data } = useSelector((state) => state.users);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {

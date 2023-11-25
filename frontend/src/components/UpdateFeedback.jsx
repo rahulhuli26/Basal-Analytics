@@ -3,30 +3,29 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { postFeedbacks } from "../store/feedbacks/feedbacks.action";
+import { useNavigate, useParams } from "react-router-dom";
+import { updateFeedback } from "../store/feedbacks/feedbacks.action";
 
-function AddFeedback() {
+function UpdateFeedback() {
+  const { feedbackData } = useParams();
   const [feedback, setFeedback] = useState("");
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const feedbackObj = {
-      userId: user._id,
-      username: user.username,
+      _id: feedbackData._id,
       feedback: feedback,
     };
-    let res = await dispatch(postFeedbacks(feedbackObj));
-    if (res.feedback.feedback) {
+    let res = await dispatch(updateFeedback(feedbackObj));
+    if (res.data) {
       navigate("/feedback");
     } else {
-      alert("Error in posting feedback");
+      alert("Error in updating feedback");
     }
   };
-
+  console.log(feedbackData);
   return (
     <>
       <div className="container">
@@ -35,13 +34,12 @@ function AddFeedback() {
             <Form.Control
               as="textarea"
               type="text"
-              placeholder="Write your feedback"
+              defaultValue={updateFeedback.feedback}
               onChange={(e) => setFeedback(e.target.value)}
-              required
             />
           </Form.Group>
           <Button className="submit-btn" variant="primary" type="submit">
-            Post feedback
+            Update feedback
           </Button>
         </Form>
       </div>
@@ -49,4 +47,4 @@ function AddFeedback() {
   );
 }
 
-export default AddFeedback;
+export default UpdateFeedback;

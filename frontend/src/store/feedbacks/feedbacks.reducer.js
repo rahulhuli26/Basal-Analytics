@@ -1,6 +1,8 @@
 import {
   DELETE_FEEDBACK,
+  ERROR,
   GET_FEEDBACK,
+  LOADING,
   POST_FEEDBACK,
   UPDATE_FEEDBACK,
 } from "./feedbacks.type";
@@ -14,6 +16,7 @@ const initialState = {
 export const feedbackReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_FEEDBACK: {
+      console.log(payload);
       return {
         ...state,
         isLoading: false,
@@ -46,7 +49,6 @@ export const feedbackReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: false,
-        data: payload,
       };
     }
     case DELETE_FEEDBACK: {
@@ -54,7 +56,6 @@ export const feedbackReducer = (state = initialState, { type, payload }) => {
         ...state,
         isLoading: false,
         isError: false,
-        data: payload,
       };
     }
     default: {

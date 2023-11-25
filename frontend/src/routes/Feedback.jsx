@@ -1,17 +1,28 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
+import Button from "react-bootstrap/Button";
+import ListFeedback from "../components/ListFeedback";
+import { getFeedbacks } from "../store/feedbacks/feedbacks.action";
 
 const Feedback = () => {
-  const { data } = useSelector((state) => state.users);
-  conat { } = useSelector((state) => state.);
-  const token = JSON.parse(sessionStorage.getItem("token"));
   const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch();
+  const { data } = useSelector((state) => state.feedback);
+
+  useEffect(() => {
+    dispatch(getFeedbacks());
+  }, [dispatch]);
 
   return (
     <>
-      <div>kjhlkj</div>
+      <div>
+        <div>
+          <Button size="md" href="/addFeedback" variant="primary">
+            Post Feedback
+          </Button>
+        </div>
+        <ListFeedback feedbacks={data} user={user} />
+      </div>
     </>
   );
 };
