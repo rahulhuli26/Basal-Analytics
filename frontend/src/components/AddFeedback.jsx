@@ -12,6 +12,7 @@ function AddFeedback() {
   const user = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
 
+  // sending feedback object to postFeedbacks action
   const handleSubmit = async (e) => {
     e.preventDefault();
     const feedbackObj = {

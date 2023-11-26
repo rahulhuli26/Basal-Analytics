@@ -26,12 +26,14 @@ function Signup() {
     if (res.user === "") {
       alert(res.message);
     } else {
+      // Navigating to the login page if signup is successful
       navigate("/login");
     }
   };
 
   return (
     <>
+      {/* Signup form */}
       <div className="container">
         <Form onSubmit={handleSubmit}>
           <Form.Group as={Col} controlId="formGridEmail">
@@ -74,6 +76,7 @@ function Signup() {
             Submit
           </Button>
         </Form>
+        {/* Link to the login page */}
         <div className="account-div">
           <a className="account" href="/login">
             Already have account?

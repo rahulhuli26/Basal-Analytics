@@ -40,3 +40,24 @@
   width: 100%;
   margin-bottom: 30px;
 }
+
+.card-btn {
+  display: flex;
+  gap: 10px;
+}
+
+.post-btn {
+  margin: 20px 20px;
+}
+
+.list-btn {
+  margin: 20px;
+}
+
+.listitems-btn {
+  margin-bottom: 20px;
+}
+
+.logout-btn {
+  margin-left: 80%;
+}

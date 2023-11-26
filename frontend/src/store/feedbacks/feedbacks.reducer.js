@@ -16,7 +16,6 @@ const initialState = {
 export const feedbackReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GET_FEEDBACK: {
-      console.log(payload);
       return {
         ...state,
         isLoading: false,

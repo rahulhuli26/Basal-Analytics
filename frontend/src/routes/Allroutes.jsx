@@ -9,6 +9,7 @@ import UpdateFeedback from "../components/UpdateFeedback";
 export const AllRoutes = () => {
   return (
     <>
+      {/* defining all routes  */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />

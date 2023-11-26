@@ -8,6 +8,7 @@ import { updateFeedback } from "../store/feedbacks/feedbacks.action";
 
 function UpdateFeedback() {
   const { feedbackData } = useParams();
+  const updateData = JSON.parse(feedbackData);
   const [feedback, setFeedback] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -15,17 +16,17 @@ function UpdateFeedback() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const feedbackObj = {
-      _id: feedbackData._id,
+      _id: updateData._id,
       feedback: feedback,
     };
     let res = await dispatch(updateFeedback(feedbackObj));
-    if (res.data) {
+    if (res) {
       navigate("/feedback");
     } else {
       alert("Error in updating feedback");
     }
   };
-  console.log(feedbackData);
+
   return (
     <>
       <div className="container">
@@ -34,7 +35,7 @@ function UpdateFeedback() {
             <Form.Control
               as="textarea"
               type="text"
-              defaultValue={updateFeedback.feedback}
+              defaultValue={updateData.feedback}
               onChange={(e) => setFeedback(e.target.value)}
             />
           </Form.Group>

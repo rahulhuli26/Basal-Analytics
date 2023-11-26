@@ -13,6 +13,7 @@ export default function ListFeedback({ feedbacks, user }) {
   const [show, setShow] = useState(false);
   const [viewData, setViewdata] = useState("");
   const handleClose = () => setShow(false);
+  // opening modal
   const handleShow = (data) => {
     setViewdata(data);
     setShow(true);
@@ -20,58 +21,62 @@ export default function ListFeedback({ feedbacks, user }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleEdit = (feedbackData) => {
+  // sending data to update feedback route
+  const handleEdit = (data) => {
+    const feedbackData = JSON.stringify(data);
     navigate(`/updateFeedback/${feedbackData}`);
   };
-
+  // sending data to delete perticular feedback
   const handleDelete = (id) => {
     dispatch(deleteFeedback(id));
     window.location.reload();
   };
-  console.log(user, feedbacks);
   return (
     <>
-      <div>
+      <div className="list-btn">
         {feedbacks &&
           feedbacks.map((data, index) => {
+            let status;
+            if (user.role === "admin" && data.userId === user._id) {
+              status = false;
+            } else if (data.userId === user._id || user.role === "admin") {
+              status = false;
+            } else {
+              status = true;
+            }
+
             return (
-              <div key={index}>
+              <div className="listitems-btn" key={index}>
                 <Card>
                   <Card.Header>{data.username}</Card.Header>
                   <Card.Body>
                     <Card.Text>{data.feedback}</Card.Text>
                   </Card.Body>
-                  <Card.Footer>
+                  <Card.Footer className="card-btn">
+                    {/* Veiw button */}
                     <Button
                       className="ft-btn"
                       variant="primary"
                       onClick={() => handleShow(data)}
-                      disabled={
-                        data.role === "admin" ||
-                        Number(data.userId) === Number(user._id)
-                      }
+                      disabled={status}
                     >
                       <MdOutlineRemoveRedEye />
                     </Button>
+                    {/* Edit button */}
                     <Button
                       className="ft-btn"
                       variant="warning"
                       onClick={() => handleEdit(data)}
-                      disabled={
-                        data.role === "admin" ||
-                        Number(data.userId) === Number(user._id)
-                      }
+                      disabled={status}
                     >
                       <FaEdit />
                     </Button>
+                    {/* Delete button */}
                     <Button
                       className="ft-btn"
                       variant="danger"
                       onClick={() => handleDelete(data._id)}
-                      disabled={
-                        data.role === "admin" ||
-                        Number(data.userId) === Number(user._id)
-                      }
+                      disabled={status}
                     >
                       <MdDeleteOutline />
                     </Button>

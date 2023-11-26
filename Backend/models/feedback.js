@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+// MongoDB schema for feedback
 const FeedbackSchema = mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "user" },
@@ -11,6 +12,7 @@ const FeedbackSchema = mongoose.Schema(
   }
 );
 
+// MongoDB model for feedback
 const FeedbackModel = mongoose.model("feedback", FeedbackSchema);
 
 module.exports = FeedbackModel;

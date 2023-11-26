@@ -12,7 +12,6 @@ export const getFeedbacks = () => async (dispatch) => {
   dispatch({ type: LOADING });
   try {
     const res = await axios.get("http://localhost:8000/feedback/get");
-    console.log(res);
     dispatch({ type: GET_FEEDBACK, payload: res.data.feedbacks });
     return res.data;
   } catch (err) {
@@ -41,8 +40,8 @@ export const updateFeedback = (data) => async (dispatch) => {
   dispatch({ type: LOADING });
   try {
     const res = await axios.patch(
-      `http://localhost:8000/feedback/update/${data.id}`,
-      data.feedback
+      `http://localhost:8000/feedback/update/${data._id}`,
+      { feedback: data.feedback }
     );
     dispatch({ type: UPDATE_FEEDBACK });
     return res.data;

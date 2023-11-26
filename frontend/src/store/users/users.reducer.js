@@ -6,9 +6,11 @@ const initialState = {
   data: [],
 };
 
+// Reducer function for handling user-related actions
 export const usersReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case GETUSER: {
+      // Update sessionStorage and localStorage based on the received payload
       if (payload) {
         sessionStorage.setItem("token", JSON.stringify(payload.token));
         localStorage.setItem("user", JSON.stringify(payload));
