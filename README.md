@@ -21,6 +21,7 @@ Frontend:
 5. In each feedback card you are able to see who gave feedback and what was the feedback along with that there are three buttons, where you can view, edit, delete your own feedbacks.
 6. If admit is logged in he can access all the feedbacks given by users along with that he can view,edit and delete anyones feedbacks and he don't have access to post the feedback.
 7. In the left most corner of the header there is a logout button from which user can logout.
+8. http://3000 by this url you can access the frontend
 
 Backend:
 
